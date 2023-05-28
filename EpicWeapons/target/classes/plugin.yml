@@ -1,0 +1,6 @@
+name: EpicWeapons
+version: '1.0-SNAPSHOT'
+main: weapons.epic.epic.weapons.Epic.EpicWeapons
+api-version: 1.19
+authors: [ GreeFox ]
+description: Adds more epic weapons to Minecraft!
