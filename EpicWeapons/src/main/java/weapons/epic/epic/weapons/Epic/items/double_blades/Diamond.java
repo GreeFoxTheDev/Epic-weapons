@@ -18,11 +18,13 @@ import java.util.List;
 import java.util.UUID;
 
 public class Diamond extends JavaPlugin {
-    public static void init(){
+    public static ItemStack diamondDoubleBlade;
+
+    public static void init() {
         createDiamondDoubleBlade();
     }
-    public static ItemStack diamondDoubleBlade;
-    private static void createDiamondDoubleBlade(){
+
+    private static void createDiamondDoubleBlade() {
         ItemStack item = new ItemStack(Material.DIAMOND_AXE, 1);
         ItemMeta im = item.getItemMeta();
         im.setDisplayName(ChatColor.WHITE + "Diamond Double Blade");
@@ -33,17 +35,15 @@ public class Diamond extends JavaPlugin {
         lore.add("");
         lore.add(ChatColor.GRAY + "When in Main Hand:");
         lore.add(ChatColor.DARK_GREEN + " 8 Attack Damage");
-        lore.add(ChatColor.DARK_GREEN + " X Attack Speed");
+        lore.add(ChatColor.DARK_GREEN + " 1 Attack Speed");
         lore.add("");
         lore.add(ChatColor.YELLOW + "Custom ability: " + ChatColor.GRAY + "Double attack");
         lore.add("");
         im.setLore(lore);
 
-        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(),
-                "generic.attackSpeed", -3, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier speed = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", -3, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         im.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speed);
-        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(),
-                "generic.attackDamage", 8, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier damage = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", 8, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damage);
         item.setItemMeta(im);
         diamondDoubleBlade = item;

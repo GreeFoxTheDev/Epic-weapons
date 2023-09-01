@@ -4,3 +4,7 @@ main: weapons.epic.epic.weapons.Epic.EpicWeapons
 api-version: 1.19
 authors: [ GreeFox ]
 description: Adds more epic weapons to Minecraft!
+commands:
+  giveweapon:
+    description: "Gives player an item"
+    usage: /<command> <item>
