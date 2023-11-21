@@ -2,7 +2,6 @@ package weapons.epic.epic.weapons.Epic.abilityListeners;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,23 +19,16 @@ public class ClaymoreAbility implements Listener {
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {
         if (event.getDamager() instanceof Player) {
-            if (((Player) event.getDamager()).getInventory().getItemInMainHand().getItemMeta() != null) {
-                boolean name = ((Player) event.getDamager()).getInventory().getItemInMainHand().getItemMeta().getLocalizedName().contains("claymore");
-                if (((Player) event.getDamager()).getInventory().getItemInMainHand().getItemMeta() != null) {
-                    if (name) {
-                        Player player = ((Player) event.getDamager());
-                        ItemStack item = player.getInventory().getItemInOffHand();
-                        double damage = event.getDamage();
-                        if (item.getType() != Material.AIR) {
-                            if (!(item.getType().isEdible() || item.getType() == Material.TOTEM_OF_UNDYING)) {
-                                event.setDamage(0);
-                                String claymoreName = player.getInventory().getItemInMainHand().getItemMeta().getDisplayName();
-                                String normalItemName = claymoreName.replace("§f", "");
-                                String message = ChatColor.RED + normalItemName + ChatColor.DARK_RED + " is double-handed.";
-                                player.sendMessage(message);
-                            }
-                        }
-                    }
+            ItemStack mainHand = ((Player) event.getDamager()).getInventory().getItemInMainHand();
+            if (mainHand.hasItemMeta() && mainHand.getItemMeta().hasLocalizedName() && mainHand.getItemMeta().getLocalizedName().contains("claymore")) {
+                Player damager = ((Player) event.getDamager());
+                ItemStack offHand = damager.getInventory().getItemInOffHand();
+                if (offHand.getType() == Material.AIR){
+                    event.setCancelled(false);
+                }
+                else {
+                    damager.sendMessage(ChatColor.DARK_RED + "Claymores are double-handed!");
+                    event.setCancelled(true);
                 }
             }
         }

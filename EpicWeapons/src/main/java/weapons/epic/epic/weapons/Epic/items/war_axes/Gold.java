@@ -28,7 +28,7 @@ public class Gold extends JavaPlugin {
         ItemStack item = new ItemStack(Material.GOLDEN_AXE, 1);
         ItemMeta im = item.getItemMeta();
         im.setDisplayName("§fGolden Hand Axe");
-        im.setLocalizedName("gold_war_axe");
+        im.setLocalizedName("golden_war_axe");
         im.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         im.setCustomModelData(5875100);
 
